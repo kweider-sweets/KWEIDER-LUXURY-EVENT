@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Private Events at Kweider | Acton, London</title>
+  <meta name="description" content="Request private hire of Kweider's first floor in Acton for up to 85 guests. Build breakfast, lunch, dinner, wedding hospitality or a tailored private event.">
+  <link rel="preconnect" href="https://menu.kweidersweets.co.uk">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="brand-lockup" href="#top" aria-label="Kweider Private Events">
+        <img src="images/kweider-logo-2026.png" alt="Kweider Damascene Sweets">
+      </a>
+      <div class="topbar-copy">
+        <span>Private Events</span>
+        <small>مناسبات قويدر الخاصة</small>
+      </div>
+      <a class="header-cta" href="#builder">Build Your Event</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy cinematic-enter">
+          <div class="eyebrow">PRIVATE HIRE · ACTON, LONDON</div>
+          <h1>Your Occasion,<br><em>Your Kweider.</em></h1>
+          <p class="lead">Reserve Kweider’s first floor and shape the hospitality around your guests — from private hire to breakfast, lunch, dinner and wedding service.</p>
+          <p class="ar-line">احجز الطابق الأول بالكامل، واختر الضيافة التي تناسب مناسبتك وضيوفك.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-scroll="#builder">Build Your Event</button>
+            <button class="ghost-btn" data-scroll="#experience-film">View the Space</button>
+          </div>
+        </div>
+        <div class="hero-image cinematic-enter delay-1" role="img" aria-label="Kweider first-floor private venue"></div>
+      </div>
+    </section>
+
+    <section class="facts">
+      <div class="wrap facts-grid">
+        <article class="reveal"><strong>85</strong><span>Guests maximum</span><small>حتى 85 ضيفاً</small></article>
+        <article class="reveal"><strong>Private</strong><span>First-floor venue</span><small>الطابق الأول بالكامل</small></article>
+        <article class="reveal"><strong>8</strong><span>Booking options</span><small>8 خيارات للحجز</small></article>
+        <article class="reveal"><strong>Request</strong><span>Confirmed by our team</span><small>الطلب يحتاج تأكيداً</small></article>
+      </div>
+    </section>
+
+    <section class="experience-film reveal" id="experience-film">
+      <div class="wrap film-grid">
+        <div class="film-copy">
+          <span class="section-kicker">DAMASCUS · OUR BEGINNINGS</span>
+          <h2>Our beginnings,<br><em>in Damascus.</em></h2>
+          <p>Our story began in Damascus, one of the world’s oldest continuously inhabited cities, where sweet-making has long been woven into the city’s culture and hospitality.</p>
+          <p>In Al-Midan, Deeb bin Muhammad Kweider (1860–1951) laid the foundations of the family craft. Passed through generations, the Kweider name was formally established in 1969 — carrying authentic Damascene tradition forward.</p>
+          <p class="film-ar">لمحة عن أجواء المكان قبل أن تبدأ بتنسيق مناسبتك.</p>
+        </div>
+        <div class="film-frame">
+          <video autoplay muted loop playsinline preload="metadata" poster="images/venue-hero.webp">
+            <source src="media/venue-preview.mp4" type="video/mp4">
+          </video>
+          <div class="film-badge">PRIVATE EVENTS · KWEIDER</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="builder" class="builder-section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="step-mark">01</span>
+            <h2>Build your event</h2>
+            <p>Start with your guest count, then choose the booking style that fits your occasion.</p>
+          </div>
+          <p class="section-ar">ابدأ بعدد الضيوف ثم اختر نوع الحجز المناسب.</p>
+        </div>
+
+        <div class="builder-layout">
+          <div class="builder-main">
+
+            <section class="panel guest-panel reveal">
+              <div class="panel-title">
+                <div><small>GUESTS</small><h3>How many guests?</h3></div>
+                <span class="limit-pill">Private hire: 40–85</span>
+              </div>
+
+              <div class="guest-control">
+                <button type="button" id="guestMinus" aria-label="Decrease guests">−</button>
+                <input id="guestCount" type="text" value="40" inputmode="numeric" pattern="[0-9]*" lang="en" dir="ltr" autocomplete="off">
+                <button type="button" id="guestPlus" aria-label="Increase guests">+</button>
+              </div>
+
+              <div class="quick-guests six compact-guest-chips" aria-label="Quick guest count">
+                <button data-guests="10">10</button>
+                <button data-guests="15">15</button>
+                <button data-guests="25">25</button>
+                <button data-guests="40">40</button>
+                <button data-guests="60">60</button>
+                <button data-guests="80">80</button>
+              </div>
+
+              <div class="table-booking-notice" id="tableBookingNotice" hidden aria-hidden="true">
+                <div>
+                  <strong>For fewer than 40 guests, table booking is the better option.</strong>
+                  <span>لأقل من 40 ضيفاً، ننصح بحجز الطاولات بدل حجز الطابق بالكامل.</span>
+                </div>
+                <a href="https://kweidersweets.co.uk/pages/book-a-table" target="_blank" rel="noopener">Book a Table</a>
+              </div>
+            </section>
+
+            <section class="panel reveal" id="packagePanel">
+              <div class="panel-title">
+                <div><small>BOOKING TYPE</small><h3>Choose your experience</h3></div>
+              </div>
+
+              <div class="package-grid eight package-grid-final" id="packageGrid">
+                <button class="package-card area-venue is-selected" data-package="venue-only">
+                  <img src="images/venue-only.webp" alt="">
+                  <span class="package-number">01</span>
+                  <div><strong>Venue Only</strong><small>المكان فقط</small><p>Private use of the full first floor.</p></div>
+                </button>
+
+                <button class="package-card area-breakfast" data-package="breakfast">
+                  <img src="images/breakfast.webp" alt="">
+                  <span class="package-number">02</span>
+                  <div><strong>Damascene Breakfast</strong><small>المكان + الفطور</small><p>Classic · Super · Luxury packages.</p></div>
+                </button>
+
+                <button class="package-card area-lunch" data-package="lunch">
+                  <img src="images/lunch.webp" alt="">
+                  <span class="package-number">03</span>
+                  <div><strong>Private Lunch</strong><small>المكان + الغداء</small><p>Classic · Super · Luxury packages.</p></div>
+                </button>
+
+                <button class="package-card area-dinner" data-package="dinner">
+                  <img src="images/dinner.webp" alt="">
+                  <span class="package-number">04</span>
+                  <div><strong>Private Dinner</strong><small>المكان + العشاء</small><p>Classic · Super · Luxury packages.</p></div>
+                </button>
+
+                <button class="package-card area-sweets" data-package="sweets-coffee">
+                  <img src="images/sweets-drinks.webp" alt="">
+                  <span class="package-number">05</span>
+                  <div><strong>Damascene Sweets & Coffee</strong><small>حلويات دمشقية وقهوة</small><p>Classic · Super · Luxury hospitality.</p></div>
+                </button>
+
+                <button class="package-card area-wedding" data-package="wedding">
+                  <img src="images/wedding.webp" alt="">
+                  <span class="package-number">06</span>
+                  <div><strong>Wedding Hospitality</strong><small>ضيافة حفلات الزفاف</small><p>Classic · Super · Luxury · Wedding Dinner.</p></div>
+                </button>
+
+                <button class="package-card area-special" data-package="special-events">
+                  <img src="images/venue-hero.webp" alt="">
+                  <span class="package-number">07</span>
+                  <div><strong>Special Events</strong><small>فعاليات خاصة</small><p>Tailored event request with our management team.</p></div>
+                </button>
+
+                <button class="package-card area-cultural" data-package="corporate-cultural">
+                  <img src="images/special-events.webp" alt="">
+                  <span class="package-number">08</span>
+                  <div><strong>Corporate & Cultural Events</strong><small>مؤسسات وفعاليات ثقافية</small><p>Meetings, workshops, talks and cultural gatherings.</p></div>
+                </button>
+              </div>
+            </section>
+
+            <section class="panel reveal" id="durationPanel">
+              <div class="panel-title">
+                <div>
+                  <small>EVENT TIME</small>
+                  <h3>Choose your time</h3>
+                  <p id="durationIntro">Hospitality bookings include the first 2 hours.</p>
+                </div>
+                <span class="recommend-pill" id="recommendedDuration">Recommended: 2h</span>
+              </div>
+
+              <div class="duration-grid three">
+                <button data-hours="2" class="duration-btn is-selected"><strong>2</strong><span>hours</span><small>Included</small></button>
+                <button data-hours="3" class="duration-btn"><strong>3</strong><span>hours</span><small>+ £150</small></button>
+                <button data-hours="4" class="duration-btn"><strong>4</strong><span>hours</span><small>+ £250</small></button>
+              </div>
+
+              <div class="rate-note" id="durationNote">For hospitality bookings, the first 2 hours are included. 3 hours adds £150. 4 hours adds £250. Longer events are arranged with management.</div>
+            </section>
+
+            <section class="panel selection-panel reveal" id="selectionPanel">
+              <div class="panel-title">
+                <div><small>PERSONALISE</small><h3 id="selectionTitle">Venue only</h3><p id="selectionIntro">Venue-only hire has a separate policy and rate.</p></div>
+              </div>
+              <div id="selectionContent" class="selection-content"></div>
+            </section>
+
+            <section class="panel schedule-panel reveal" id="schedule">
+              <div class="panel-title">
+                <div><small>PREFERRED DATE & TIME</small><h3>When would you like to visit?</h3><p>This is a request, not a confirmed booking.</p></div>
+              </div>
+              <div class="schedule-grid luxury-schedule-grid">
+                <div class="field calendar-field">
+                  <span>Preferred date</span>
+                  <button type="button" class="calendar-trigger" id="calendarTrigger" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="calendar-trigger-icon" aria-hidden="true">▦</span>
+                    <span id="calendarTriggerText">Choose a date</span>
+                    <span class="calendar-trigger-caret" aria-hidden="true">⌄</span>
+                  </button>
+                  <div class="calendar-popover" id="calendarPopover" hidden>
+                    <div class="calendar-header">
+                      <button type="button" id="calendarPrev" aria-label="Previous month">‹</button>
+                      <strong id="calendarMonthLabel">Month Year</strong>
+                      <button type="button" id="calendarNext" aria-label="Next month">›</button>
+                    </div>
+                    <div class="calendar-weekdays" aria-hidden="true">
+                      <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    </div>
+                    <div class="calendar-days" id="calendarDays" role="grid" aria-label="Choose preferred date"></div>
+                    <div class="calendar-footer">
+                      <span id="calendarSelectedText">No date selected</span>
+                      <button type="button" id="calendarClear">Clear</button>
+                    </div>
+                  </div>
+                </div>
+
+                <label class="field time-field"><span>Preferred start time</span>
+                  <select id="eventTime">
+                    <option value="">Choose time</option>
+                    <option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option>
+                    <option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option>
+                    <option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option>
+                  </select>
+                </label>
+              </div>
+              <p class="availability-message" id="availabilityMessage"></p>
+            </section>
+
+            <section class="panel contact-panel reveal" id="contact">
+              <div class="panel-title">
+                <div><small>CONTACT</small><h3>Your details</h3><p>Our team will contact you to confirm availability and final details.</p></div>
+              </div>
+              <div class="contact-grid">
+                <label class="field"><span>Name</span><input id="contactName" autocomplete="name"></label>
+                <label class="field"><span>Phone</span><input id="contactPhone" autocomplete="tel"></label>
+                <label class="field"><span>Email</span><input id="contactEmail" type="email" autocomplete="email"></label>
+                <label class="field full"><span>Special request</span><textarea id="contactNotes" rows="4" placeholder="Tell us about your occasion, setup or any special requirements."></textarea></label>
+              </div>
+              <button class="primary-btn submit-btn" id="submitRequest">Send Booking Request</button>
+            </section>
+          </div>
+
+          <aside class="summary-card reveal" id="summaryCard">
+            <div class="summary-kicker">LIVE EVENT SUMMARY</div>
+            <h3>Your Event</h3>
+
+            <div class="summary-top">
+              <div><span>Guests</span><strong id="sumGuests">40</strong></div>
+              <div id="sumDurationBlock"><span>Duration</span><strong id="sumDuration">2 hrs</strong></div>
+            </div>
+
+            <div class="summary-section">
+              <span>Package</span>
+              <strong id="sumPackage">Venue Only</strong>
+              <small id="sumPackageAr">المكان فقط</small>
+            </div>
+
+            <div class="summary-lines" id="summaryLines"></div>
+
+            <div class="summary-totals">
+              <div><span>Hospitality</span><strong id="sumHospitality">£0</strong></div>
+              <div id="extraTimeRow"><span>Extra time</span><strong id="sumExtraTime">Included</strong></div>
+              <div id="venueFeeRow"><span>Venue only rate</span><strong>To confirm</strong></div>
+              <div class="grand-total"><span>Estimated total</span><strong id="sumTotal">Venue rate to confirm</strong></div>
+              <small id="sumTotalNote">Menu-based item prices are shown before VAT.</small>
+            </div>
+
+            <button class="summary-edit" data-scroll="#selectionPanel">Edit Selection</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop-strip reveal">
+      <div class="wrap shop-strip-inner">
+        <div class="shop-strip-copy">
+          <strong>Shop online, delivered to your door.</strong>
+          <span>Discover handcrafted baklava, Syrian sweets and elegant gifts on our main website.</span>
+          <small>تسوقوا من موقع قويدر الرئيسي واستمتعوا بالتوصيل إلى باب البيت.</small>
+        </div>
+        <a class="shop-strip-btn" href="https://kweidersweets.co.uk/" target="_blank" rel="noopener">Visit Our Main Website</a>
+      </div>
+    </section>
+
+    <section class="visit-connect reveal">
+      <div class="wrap visit-grid heritage-grid">
+        <div class="visit-photo heritage-photo">
+          <img src="images/kweider-acton-exterior-new.webp" alt="Kweider Sweets in Acton, London">
+          <div class="visit-photo-label">184–186 High Street · Acton · London W3 9NH</div>
+        </div>
+
+        <div class="visit-copy heritage-copy">
+          <span class="section-kicker">FROM DAMASCUS TO LONDON</span>
+          <h2>From Damascus<br><em>to London.</em></h2>
+          <p>Since 1969, Kweider has carried the craft and hospitality of Damascus through generations.</p>
+          <p>Today, that heritage continues at our home on Acton High Street in West London — a destination for handcrafted baklava, traditional Syrian sweets, elegant gifts and a welcoming café.</p>
+          <p class="visit-ar">منذ عام 1969، يحمل قويدر حرفة وضيافة دمشق عبر الأجيال، واليوم تستمر هذه المسيرة في مقرنا في Acton High Street بلندن.</p>
+          <p class="heritage-address"><strong>Visit us:</strong> 184–186 High Street, Acton, London W3 9NH</p>
+
+          <div class="connect-grid compact-connect">
+            <a href="https://www.google.com/maps/search/?api=1&query=Kweider+Sweets+184-186+High+Street+Acton+London+W3+9NH" target="_blank" rel="noopener" aria-label="Open Kweider on Google Maps">
+              <span class="connect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2.2"/></svg></span><strong>Maps</strong><span class="connect-sub">Directions</span>
+            </a>
+            <a href="https://www.google.com/search?q=Kweider+Sweets+Acton+Google+Reviews" target="_blank" rel="noopener" aria-label="Read Kweider Google Reviews">
+              <span class="connect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span><strong>Reviews</strong><span class="connect-sub">Google</span>
+            </a>
+            <a href="#contact" aria-label="Contact Kweider">
+              <span class="connect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4z"/><path d="m4.5 7 7.5 5.5L19.5 7"/></svg></span><strong>Contact</strong><span class="connect-sub">Enquiry</span>
+            </a>
+            <a href="https://www.instagram.com/kweideruk" target="_blank" rel="noopener" aria-label="Kweider on Instagram">
+              <span class="connect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r=".8" class="fill"/></svg></span><strong>Instagram</strong><span class="connect-sub">@kweideruk</span>
+            </a>
+            <a href="https://www.tiktok.com/@kweideruk" target="_blank" rel="noopener" aria-label="Kweider on TikTok">
+              <span class="connect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a4.2 4.2 0 1 1-3.5-4.1"/><path d="M14 4c.6 2.5 2.1 4 4.5 4.5"/></svg></span><strong>TikTok</strong><span class="connect-sub">@kweideruk</span>
+            </a>
+            <a href="https://www.facebook.com/KweiderUK" target="_blank" rel="noopener" aria-label="Kweider on Facebook">
+              <span class="connect-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 20v-7h2.5l.4-3H14V8.1c0-.9.3-1.6 1.6-1.6H17V4.1c-.5-.1-1.3-.1-2.2-.1-2.2 0-3.8 1.4-3.8 3.9V10H8.5v3H11v7"/></svg></span><strong>Facebook</strong><span class="connect-sub">KweiderUK</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <img src="images/kweider-logo-2026.png" alt="Kweider">
+      <p>Private Events · Acton, London</p>
+      <a href="#builder">Build Your Event</a>
+    </div>
+  </footer>
+
+  <div class="mobile-summary">
+    <div><small id="mobileGuests">40 guests</small><strong id="mobileTotal">Venue rate to confirm</strong></div>
+    <button id="openMobileSummary">View Summary</button>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-handle"></div>
+    <button class="drawer-close" id="closeMobileSummary">×</button>
+    <div id="mobileSummaryContent"></div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="availability.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

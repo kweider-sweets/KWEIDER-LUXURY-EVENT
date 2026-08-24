@@ -7,9 +7,11 @@ const state = {
   preferredDate: "",
   calendarView: null,
   quantities: {},
-  coffeeChoice: "Cardamom Arabic Coffee"
+  coffeeChoice: "Cardamom Arabic Coffee",
+  submittedRequestId: ""
 };
 
+const EVENTS_API_URL = "https://kweider-events-api.abdokweider1.workers.dev/event-request";
 const VENUE_ONLY_RATES = {2:400,4:700,6:1000};
 const EXTRA_TIME = {2:0,3:150,4:250};
 
@@ -666,6 +668,12 @@ function bookingReady(){
 function syncSubmitState(){
   const btn=document.getElementById("submitRequest");
   if(!btn)return;
+  if(state.submittedRequestId){
+    btn.disabled=true;
+    btn.classList.add("is-disabled");
+    btn.textContent="Request Received ✓";
+    return;
+  }
   const ready=bookingReady();
   btn.disabled=!ready;
   btn.classList.toggle("is-disabled",!ready);
@@ -903,6 +911,42 @@ function closeDrawer(){
   document.getElementById("drawerBackdrop").classList.remove("open");
   document.getElementById("mobileDrawer").setAttribute("aria-hidden","true");
 }
+function submissionSelections(){
+  const tier=selectedTier();
+  const req=tier?.requirement;
+  if(!req)return [];
+  return itemsForRequirement(req)
+    .map(item=>({id:item.id,qty:qty(req.group,item.id)}))
+    .filter(item=>item.qty>0);
+}
+
+function createSubmissionId(){
+  if(globalThis.crypto?.randomUUID)return crypto.randomUUID();
+  return `web-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+}
+
+async function sendEventRequest(payload){
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),20000);
+  try{
+    const response=await fetch(EVENTS_API_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload),
+      signal:controller.signal,
+      credentials:"omit"
+    });
+    let data={};
+    try{data=await response.json();}catch{}
+    if(!response.ok||!data.ok){
+      throw new Error(data.message||"We could not submit your request. Please try again.");
+    }
+    return data;
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+
 function initReveal(){
   const items=document.querySelectorAll(".reveal");
   if(!("IntersectionObserver" in window)){
@@ -984,13 +1028,15 @@ function init(){
 
   document.getElementById("eventTime").onchange=validateAvailability;
 
-  document.getElementById("submitRequest").onclick=()=>{
+  document.getElementById("submitRequest").onclick=async()=>{
+    const btn=document.getElementById("submitRequest");
+    if(state.submittedRequestId)return;
     if(!privateEligible()){
       toast("Private hire starts from 40 guests.");
       return;
     }
     if(!bookingReady()){
-      if(!state.tierId){
+      if(!state.tierId&&!isTailored()&&state.packageId!=="venue-only"){
         toast("Choose a package level first.");
       }else{
         const remaining=Math.max(0,state.guests-assignedForRequirement());
@@ -1002,11 +1048,55 @@ function init(){
 
     const name=document.getElementById("contactName").value.trim();
     const phone=document.getElementById("contactPhone").value.trim();
+    const email=document.getElementById("contactEmail").value.trim();
+    const notes=document.getElementById("contactNotes").value.trim();
+    const preferredTime=document.getElementById("eventTime").value;
     if(!name||!phone){
       toast("Please add your name and phone number.");
       return;
     }
-    toast("Your event request details are complete. Our team will confirm availability after submission.");
+    if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      toast("Please enter a valid email address.");
+      return;
+    }
+
+    const payload={
+      submissionId:createSubmissionId(),
+      guests:state.guests,
+      experience:state.packageId,
+      tier:state.tierId,
+      duration:state.duration,
+      preferredDate:state.preferredDate,
+      preferredTime,
+      coffeeChoice:state.coffeeChoice,
+      selections:submissionSelections(),
+      contact:{name,phone,email,notes},
+      website:""
+    };
+
+    const originalText=btn.textContent;
+    btn.disabled=true;
+    btn.classList.add("is-disabled");
+    btn.textContent="Sending Request…";
+
+    try{
+      const result=await sendEventRequest(payload);
+      state.submittedRequestId=result.requestId;
+      btn.textContent="Request Received ✓";
+      if(typeof result.total==="number"){
+        document.getElementById("sumTotal").textContent=result.totalFormatted;
+        document.getElementById("mobileTotal").textContent=result.totalFormatted;
+      }
+      toast(`Request ${result.requestId} received. Our team will contact you to confirm.`);
+    }catch(error){
+      btn.textContent=originalText;
+      state.submittedRequestId="";
+      syncSubmitState();
+      const message=error?.name==="AbortError"
+        ? "The request took too long. Please check your connection and try again."
+        : (error?.message||"We could not submit your request. Please try again.");
+      toast(message);
+    }
   };
 
   document.getElementById("openMobileSummary").onclick=openDrawer;

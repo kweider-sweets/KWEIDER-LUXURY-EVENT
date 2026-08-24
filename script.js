@@ -8,7 +8,8 @@ const state = {
   calendarView: null,
   quantities: {},
   coffeeChoice: "Cardamom Arabic Coffee",
-  submittedRequestId: ""
+  submittedRequestId: "",
+  submittedSnapshot: null
 };
 
 const EVENTS_API_URL = "https://kweider-events-api.abdokweider1.workers.dev/event-request";
@@ -946,12 +947,26 @@ function ensureSuccessModal(){
     }
     .booking-success-actions .primary{background:#53131c;color:#fff8ef;border:1px solid #53131c}
     .booking-success-actions .secondary{background:transparent;color:#53131c;border:1px solid #c6a15b}
+    .submitted-summary-meta{margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(198,161,91,.28)}
+    .submitted-summary-meta .ss-status{margin:0 0 12px;padding:10px 12px;border-left:2px solid #c6a15b;background:rgba(198,161,91,.08);font-size:12px;line-height:1.5;color:#e9ddca}
+    .submitted-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+    .submitted-summary-grid div{padding:10px 11px;border:1px solid rgba(198,161,91,.22);border-radius:10px;background:#1b191a}
+    .submitted-summary-grid span{display:block;color:#aa9b92;font:700 9px/1.2 Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+    .submitted-summary-grid strong{display:block;color:#f4ede3;font-size:12px;overflow-wrap:anywhere}
+    .submitted-summary-contact{padding:10px 11px;border:1px solid rgba(198,161,91,.22);border-radius:10px;background:#1b191a;color:#f4ede3;font-size:11px;line-height:1.55;overflow-wrap:anywhere}
+    .submitted-summary-contact strong{display:block;color:#c6a15b;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em;font-size:9px}
+    .submitted-summary-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+    .submitted-summary-actions button,.submitted-summary-actions a{min-height:42px;border-radius:999px;display:flex;align-items:center;justify-content:center;text-decoration:none;font:700 11px/1 Inter,system-ui,sans-serif}
+    .submitted-summary-actions button{background:#53131c;color:#fff8ef;border:1px solid #53131c}
+    .submitted-summary-actions a{background:transparent;color:#f4ede3;border:1px solid #c6a15b}
     @media(max-width:520px){
       .booking-success-backdrop{align-items:flex-end;padding:8px}
       .booking-success-card{width:100%;max-height:82vh;border-radius:20px 20px 14px 14px;padding:20px 16px calc(18px + env(safe-area-inset-bottom))}
       .booking-success-card h2{font-size:34px}
       .booking-success-grid{grid-template-columns:1fr 1fr}
       .booking-success-actions{grid-template-columns:1fr}
+      .submitted-summary-grid{grid-template-columns:1fr 1fr}
+      .submitted-summary-actions{grid-template-columns:1fr}
     }
   `;
   document.head.appendChild(style);
@@ -977,7 +992,7 @@ function ensureSuccessModal(){
         <div><span>Preferred date</span><strong id="bookingSuccessDate">—</strong></div>
         <div><span>Preferred time</span><strong id="bookingSuccessTime">—</strong></div>
       </div>
-      <p class="booking-success-note">Your booking is not confirmed yet. Our team will review availability and contact you to confirm the arrangements.</p>
+      <p class="booking-success-note">Submitting this request does not confirm your booking. Our team reviews booking requests during business hours and will respond as soon as possible, within 48 hours at the latest.</p>
       <div class="booking-success-actions">
         <button type="button" class="primary" id="bookingSuccessSummary">View Request Summary</button>
         <a class="secondary" href="https://kweidersweets.co.uk">Return to Kweider</a>
@@ -991,9 +1006,74 @@ function ensureSuccessModal(){
   });
   document.getElementById("bookingSuccessSummary").addEventListener("click",()=>{
     modal.classList.remove("is-open");
+    refreshSubmittedSummaries();
     if(window.matchMedia("(max-width: 1023px)").matches)openDrawer();
     else document.getElementById("summaryCard")?.scrollIntoView({behavior:"smooth",block:"center"});
   });
+}
+
+
+function escapeHtml(value){
+  return String(value??"").replace(/[&<>'"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
+}
+
+function applySubmittedSummary(card,snapshot){
+  if(!card||!snapshot)return;
+  const kicker=card.querySelector(".summary-kicker");
+  const title=card.querySelector("h3");
+  if(kicker)kicker.textContent="BOOKING REQUEST SUMMARY";
+  if(title)title.textContent="Your Request";
+
+  card.querySelectorAll(".summary-edit,.submitted-summary-meta,.submitted-summary-actions").forEach(el=>el.remove());
+
+  const meta=document.createElement("div");
+  meta.className="submitted-summary-meta";
+  meta.innerHTML=`
+    <p class="ss-status"><strong>Awaiting confirmation.</strong><br>Submitting this request does not confirm your booking. Our team reviews requests during business hours and will respond within 48 hours at the latest.</p>
+    <div class="submitted-summary-grid">
+      <div><span>Booking reference</span><strong>${escapeHtml(snapshot.requestId||"—")}</strong></div>
+      <div><span>Preferred date</span><strong>${escapeHtml(snapshot.preferredDate||"—")}</strong></div>
+      <div><span>Preferred time</span><strong>${escapeHtml(snapshot.preferredTime||"—")}</strong></div>
+      <div><span>Status</span><strong>Awaiting review</strong></div>
+    </div>
+    <div class="submitted-summary-contact">
+      <strong>Customer details</strong>
+      ${escapeHtml(snapshot.name||"—")}<br>
+      ${escapeHtml(snapshot.phone||"—")}${snapshot.email?`<br>${escapeHtml(snapshot.email)}`:""}
+    </div>
+  `;
+  card.appendChild(meta);
+
+  const actions=document.createElement("div");
+  actions.className="submitted-summary-actions";
+  actions.innerHTML=`
+    <button type="button" data-close-submitted-summary>Close Summary</button>
+    <a href="https://kweidersweets.co.uk">Return to Kweider</a>
+  `;
+  card.appendChild(actions);
+  actions.querySelector("[data-close-submitted-summary]")?.addEventListener("click",()=>{
+    if(card.closest("#mobileDrawer"))closeDrawer();
+    else document.getElementById("bookingSuccessModal")?.classList.add("is-open");
+  });
+}
+
+function refreshSubmittedSummaries(){
+  if(!state.submittedSnapshot)return;
+  applySubmittedSummary(document.getElementById("summaryCard"),state.submittedSnapshot);
+  const mobile=document.getElementById("mobileSummaryContent");
+  if(mobile){
+    const clone=document.getElementById("summaryCard")?.cloneNode(true);
+    if(clone){
+      clone.removeAttribute("id");
+      clone.classList.remove("reveal");
+      clone.classList.add("drawer-summary-card","is-visible");
+      clone.style.opacity="1";
+      clone.style.transform="none";
+      clone.querySelectorAll("[id]").forEach(el=>el.removeAttribute("id"));
+      mobile.replaceChildren(clone);
+      applySubmittedSummary(clone,state.submittedSnapshot);
+    }
+  }
 }
 
 function showSuccessModal(result){
@@ -1189,11 +1269,18 @@ function init(){
     try{
       const result=await sendEventRequest(payload);
       state.submittedRequestId=result.requestId;
+      state.submittedSnapshot={
+        requestId:result.requestId,
+        preferredDate:state.preferredDate,
+        preferredTime,
+        name,phone,email,notes
+      };
       btn.textContent="Request Received ✓";
       if(typeof result.total==="number"){
         document.getElementById("sumTotal").textContent=result.totalFormatted;
         document.getElementById("mobileTotal").textContent=result.totalFormatted;
       }
+      refreshSubmittedSummaries();
       toast(`Request ${result.requestId} received. Our team will contact you to confirm.`);
       showSuccessModal(result);
     }catch(error){

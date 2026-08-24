@@ -1416,3 +1416,33 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   .heritage-photo{width:min(70vw,245px)!important}
   .connect-grid.compact-connect strong{font-size:10px!important}
 }
+
+/* V11 UX refinement — mobile-first booking sequence */
+.brand-lockup{border-radius:10px;outline-offset:3px}
+.brand-lockup:focus-visible{outline:2px solid var(--gold)}
+.duration-status-pill.is-complete{background:rgba(198,161,91,.16);color:var(--wine);border-color:rgba(198,161,91,.65)}
+.duration-btn[aria-pressed="false"]{background:#fffaf4}
+.duration-btn[aria-pressed="true"]{box-shadow:0 7px 18px rgba(83,19,28,.15)}
+
+@media(max-width:620px){
+  .brand-lockup{min-width:88px;min-height:44px;display:flex;align-items:center;justify-content:flex-start}
+  .duration-choice-panel{scroll-margin-top:62px}
+  .duration-panel-title{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .duration-panel-title h3{font-size:21px;line-height:1.12;max-width:300px}
+  .duration-panel-title p{font-size:12px;line-height:1.45;margin-top:5px}
+  .duration-status-pill{align-self:flex-start;font-size:9px;padding:6px 9px}
+  .duration-grid.three{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .duration-btn{min-height:88px;padding:9px 4px;border-radius:12px;touch-action:manipulation}
+  .duration-btn strong{font-size:25px}
+  .duration-btn span{font-size:10px}
+  .duration-btn small{font-size:10px;line-height:1.15;text-align:center}
+  .rate-note{font-size:10.5px;line-height:1.45;padding:9px 10px;border-radius:10px}
+  .schedule-panel{scroll-margin-top:62px}
+  .schedule-grid.luxury-schedule-grid{grid-template-columns:1fr!important;gap:10px}
+  .calendar-trigger,.time-field select{min-height:46px;font-size:14px}
+}
+
+@media(min-width:621px) and (max-width:1023px){
+  .duration-choice-panel,.schedule-panel{scroll-margin-top:72px}
+  .duration-panel-title{align-items:flex-start}
+}

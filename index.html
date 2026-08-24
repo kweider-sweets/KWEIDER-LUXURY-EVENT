@@ -11,7 +11,7 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner wrap">
-      <a class="brand-lockup" href="#top" aria-label="Kweider Private Events">
+      <a class="brand-lockup" href="https://kweidersweets.co.uk" aria-label="Visit Kweider Sweets main website">
         <img src="images/kweider-logo-2026.png" alt="Kweider Damascene Sweets">
       </a>
       <div class="topbar-copy">
@@ -166,25 +166,6 @@
               </div>
             </section>
 
-            <section class="panel reveal" id="durationPanel">
-              <div class="panel-title">
-                <div>
-                  <small>EVENT TIME</small>
-                  <h3>Choose your time</h3>
-                  <p id="durationIntro">Hospitality bookings include the first 2 hours.</p>
-                </div>
-                <span class="recommend-pill" id="recommendedDuration">Recommended: 2h</span>
-              </div>
-
-              <div class="duration-grid three">
-                <button data-hours="2" class="duration-btn is-selected"><strong>2</strong><span>hours</span><small>Included</small></button>
-                <button data-hours="3" class="duration-btn"><strong>3</strong><span>hours</span><small>+ £150</small></button>
-                <button data-hours="4" class="duration-btn"><strong>4</strong><span>hours</span><small>+ £250</small></button>
-              </div>
-
-              <div class="rate-note" id="durationNote">For hospitality bookings, the first 2 hours are included. 3 hours adds £150. 4 hours adds £250. Longer events are arranged with management.</div>
-            </section>
-
             <section class="panel selection-panel reveal" id="selectionPanel">
               <div class="panel-title">
                 <div><small>PERSONALISE</small><h3 id="selectionTitle">Venue only</h3><p id="selectionIntro">Venue-only hire has a separate policy and rate.</p></div>
@@ -231,6 +212,25 @@
                 </label>
               </div>
               <p class="availability-message" id="availabilityMessage"></p>
+            </section>
+
+            <section class="panel reveal duration-choice-panel" id="durationPanel">
+              <div class="panel-title duration-panel-title">
+                <div>
+                  <small>BOOKING DURATION</small>
+                  <h3>How long would you like the venue?</h3>
+                  <p id="durationIntro">Choose the duration yourself so your request is completely clear.</p>
+                </div>
+                <span class="recommend-pill duration-status-pill" id="recommendedDuration">Choose duration</span>
+              </div>
+
+              <div class="duration-grid three" role="group" aria-label="Choose booking duration">
+                <button type="button" data-hours="2" class="duration-btn" aria-pressed="false"><strong>2</strong><span>hours</span><small>Included</small></button>
+                <button type="button" data-hours="3" class="duration-btn" aria-pressed="false"><strong>3</strong><span>hours</span><small>+ £150</small></button>
+                <button type="button" data-hours="4" class="duration-btn" aria-pressed="false"><strong>4</strong><span>hours</span><small>+ £250</small></button>
+              </div>
+
+              <div class="rate-note" id="durationNote">The first 2 hours are included. Extra time is added only when you choose it.</div>
             </section>
 
             <section class="panel contact-panel reveal" id="contact">

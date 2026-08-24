@@ -3,7 +3,7 @@ const state = {
   guests: 40,
   packageId: "venue-only",
   tierId: null,
-  duration: 2,
+  duration: null,
   preferredDate: "",
   calendarView: null,
   quantities: {},
@@ -237,7 +237,7 @@ function resetChoices(){
   state.quantities={};
   state.coffeeChoice="Cardamom Arabic Coffee";
 }
-function venueOnlyRate(){return VENUE_ONLY_RATES[state.duration]||VENUE_ONLY_RATES[2];}
+function venueOnlyRate(){return state.duration?VENUE_ONLY_RATES[state.duration]||0:0;}
 function extraTimeFee(){return isHospitality()?(EXTRA_TIME[state.duration]||0):0;}
 
 function itemsForRequirement(req){
@@ -280,51 +280,49 @@ function updateDurationOptions(){
   const buttons=[...document.querySelectorAll(".duration-btn")];
   if(!buttons.length)return;
 
-  if(state.packageId==="venue-only"){
-    const config=[
-      {hours:2,sub:money(400)},
-      {hours:4,sub:money(700)},
-      {hours:6,sub:money(1000)}
-    ];
-    if(!VENUE_ONLY_RATES[state.duration])state.duration=2;
-    intro.textContent="Venue-only hire is priced by duration for the full first-floor venue.";
-    note.textContent="Venue Only: 2 hours £400 · 4 hours £700 · 6 hours £1,000.";
-    badge.textContent="Venue hire";
-    buttons.forEach((btn,i)=>{
-      const c=config[i];
-      btn.dataset.hours=c.hours;
-      btn.querySelector("strong").textContent=c.hours;
-      btn.querySelector("span").textContent="hours";
-      btn.querySelector("small").textContent=c.sub;
-      btn.classList.toggle("is-selected",state.duration===c.hours);
-      btn.classList.remove("is-recommended");
-    });
-    return;
-  }
-
   if(isTailored()){
     document.getElementById("durationPanel").hidden=true;
     return;
   }
 
   document.getElementById("durationPanel").hidden=false;
-  if(![2,3,4].includes(state.duration))state.duration=2;
-  const config=[
-    {hours:2,sub:"Included"},
-    {hours:3,sub:"+ £150"},
-    {hours:4,sub:"+ £250"}
-  ];
-  intro.textContent="Hospitality bookings include the first 2 hours.";
-  note.textContent="2 hours included · 3 hours +£150 · 4 hours +£250 · Longer events are arranged with management.";
-  badge.textContent="2h included";
+
+  const config=state.packageId==="venue-only"
+    ? [
+        {hours:2,sub:money(400)},
+        {hours:4,sub:money(700)},
+        {hours:6,sub:money(1000)}
+      ]
+    : [
+        {hours:2,sub:"Included"},
+        {hours:3,sub:"+ £150"},
+        {hours:4,sub:"+ £250"}
+      ];
+
+  const validHours=config.map(item=>item.hours);
+  if(state.duration!==null&&!validHours.includes(state.duration))state.duration=null;
+
+  if(state.packageId==="venue-only"){
+    intro.textContent="Choose how long you need the full first-floor venue.";
+    note.textContent="Venue Only: 2 hours £400 · 4 hours £700 · 6 hours £1,000.";
+  }else{
+    intro.textContent="The first 2 hours are included. Choose the duration yourself; extra time is added only if selected.";
+    note.textContent="2 hours included · 3 hours +£150 · 4 hours +£250 · Longer events are arranged with management.";
+  }
+
+  badge.textContent=state.duration?`${state.duration}h selected`:"Choose duration";
+  badge.classList.toggle("is-complete",Boolean(state.duration));
+
   buttons.forEach((btn,i)=>{
     const c=config[i];
+    const selected=state.duration===c.hours;
     btn.dataset.hours=c.hours;
     btn.querySelector("strong").textContent=c.hours;
     btn.querySelector("span").textContent="hours";
     btn.querySelector("small").textContent=c.sub;
-    btn.classList.toggle("is-selected",state.duration===c.hours);
+    btn.classList.toggle("is-selected",selected);
     btn.classList.remove("is-recommended");
+    btn.setAttribute("aria-pressed",selected?"true":"false");
   });
 }
 
@@ -571,7 +569,7 @@ function renderSelection(){
     content.innerHTML=`
       <div class="policy-box">
         <div><strong>Private first-floor hire</strong><span>Full venue for 40–85 guests.</span></div>
-        <small>${state.duration} hours<br>${money(venueOnlyRate())}</small>
+        <small>${state.duration?`${state.duration} hours<br>${money(venueOnlyRate())}`:"Duration not selected"}</small>
       </div>`;
     syncSubmitState();
     return;
@@ -611,7 +609,7 @@ function renderSummaryLines(){
     return;
   }
   if(state.packageId==="venue-only"){
-    lines.innerHTML=`<div class="summary-line"><span>Venue hire · ${state.duration} hours</span><strong>${money(venueOnlyRate())}</strong></div>`;
+    lines.innerHTML=state.duration?`<div class="summary-line"><span>Venue hire · ${state.duration} hours</span><strong>${money(venueOnlyRate())}</strong></div>`:`<div class="summary-empty">Choose your booking duration.</div>`;
     return;
   }
   if(isTailored()){
@@ -662,7 +660,9 @@ function updateGuestEligibility(){
 
 function bookingReady(){
   if(!privateEligible())return false;
-  if(state.packageId==="venue-only"||isTailored())return true;
+  if(isTailored())return true;
+  if(!state.duration)return false;
+  if(state.packageId==="venue-only")return true;
   if(!state.tierId)return false;
   return coverageReady();
 }
@@ -682,6 +682,8 @@ function syncSubmitState(){
   const tier=selectedTier();
   if(!privateEligible()){
     btn.textContent="Book a Table for Smaller Groups";
+  } else if(!isTailored()&&!state.duration){
+    btn.textContent="Choose Your Duration";
   } else if(state.packageId==="venue-only"||isTailored()){
     btn.textContent="Send Booking Request";
   } else if(!tier){
@@ -711,7 +713,7 @@ function updateSummary(){
 
   const durationBlock=document.getElementById("sumDurationBlock");
   durationBlock.hidden=!privateEligible()||isTailored();
-  document.getElementById("sumDuration").textContent=`${state.duration} hrs`;
+  document.getElementById("sumDuration").textContent=state.duration?`${state.duration} hrs`:"Not selected";
 
   renderSummaryLines();
 
@@ -727,11 +729,11 @@ function updateSummary(){
 
   const venueFeeRow=document.getElementById("venueFeeRow");
   venueFeeRow.hidden=state.packageId!=="venue-only";
-  if(state.packageId==="venue-only")venueFeeRow.querySelector("strong").textContent=money(venueOnlyRate());
+  if(state.packageId==="venue-only")venueFeeRow.querySelector("strong").textContent=state.duration?money(venueOnlyRate()):"—";
 
   let total;
   if(!privateEligible())total="Table booking recommended";
-  else if(state.packageId==="venue-only")total=money(venueOnlyRate());
+  else if(state.packageId==="venue-only")total=state.duration?money(venueOnlyRate()):"Choose duration";
   else if(isTailored())total="Tailored quote";
   else if(!tier)total="Choose a package";
   else total=money(hospitality+extra);
@@ -759,18 +761,14 @@ function setPackage(id){
   state.tierId=null;
   resetChoices();
 
-  if(id==="venue-only"){
-    if(!VENUE_ONLY_RATES[state.duration])state.duration=2;
-  } else if(!isTailored()){
-    if(![2,3,4].includes(state.duration))state.duration=2;
-  }
+  state.duration=null;
 
   document.querySelectorAll(".package-card").forEach(card=>card.classList.toggle("is-selected",card.dataset.package===id));
   updateDurationOptions();
   renderSelection();
   updateSummary();
 
-  const target=id==="venue-only"?document.getElementById("durationPanel"):document.getElementById("selectionPanel");
+  const target=document.getElementById("selectionPanel");
   target.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -1223,7 +1221,10 @@ function init(){
       return;
     }
     if(!bookingReady()){
-      if(!state.tierId&&!isTailored()&&state.packageId!=="venue-only"){
+      if(!isTailored()&&!state.duration){
+        toast("Please choose how long you would like the venue.");
+        document.getElementById("durationPanel")?.scrollIntoView({behavior:"smooth",block:"center"});
+      }else if(!state.tierId&&!isTailored()&&state.packageId!=="venue-only"){
         toast("Choose a package level first.");
       }else{
         const remaining=Math.max(0,state.guests-assignedForRequirement());

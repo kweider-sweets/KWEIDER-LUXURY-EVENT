@@ -901,6 +901,113 @@ function toast(text){
   t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),2600);
 }
+
+
+function ensureSuccessModal(){
+  if(document.getElementById("bookingSuccessModal"))return;
+
+  const style=document.createElement("style");
+  style.id="bookingSuccessModalStyles";
+  style.textContent=`
+    .booking-success-backdrop{
+      position:fixed;inset:0;z-index:10050;
+      display:none;align-items:center;justify-content:center;
+      padding:18px;background:rgba(9,9,11,.74);backdrop-filter:blur(8px);
+    }
+    .booking-success-backdrop.is-open{display:flex}
+    .booking-success-card{
+      width:min(520px,100%);max-height:min(720px,calc(100vh - 36px));overflow:auto;
+      background:#f4ede3;color:#171516;border:1px solid #c6a15b;
+      border-radius:22px;box-shadow:0 24px 70px rgba(0,0,0,.36);padding:24px;
+    }
+    .booking-success-kicker{
+      margin:0 0 8px;color:#9c742b;font:700 11px/1.2 Inter,system-ui,sans-serif;
+      letter-spacing:.16em;text-transform:uppercase;
+    }
+    .booking-success-card h2{
+      margin:0;color:#53131c;font-size:clamp(30px,7vw,44px);line-height:1;
+    }
+    .booking-success-lead{margin:12px 0 18px;color:#655b54;font-size:14px;line-height:1.55}
+    .booking-success-ref{
+      padding:14px 16px;border-radius:14px;background:#0f0f10;color:#f4ede3;
+      border:1px solid rgba(198,161,91,.38);margin-bottom:14px;
+    }
+    .booking-success-ref small{display:block;color:#c6a15b;font:700 10px/1.2 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+    .booking-success-ref strong{display:block;font-size:18px;overflow-wrap:anywhere}
+    .booking-success-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+    .booking-success-grid div{padding:11px 12px;border:1px solid #d9ccbe;border-radius:12px;background:#fbf7f1}
+    .booking-success-grid span{display:block;color:#8a776c;font:700 9px/1.2 Inter,system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    .booking-success-grid strong{font-size:13px;color:#241b1b}
+    .booking-success-note{margin:0 0 18px;padding:11px 12px;border-left:2px solid #c6a15b;background:#fbf7f1;color:#655b54;font-size:12px;line-height:1.5}
+    .booking-success-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .booking-success-actions a,.booking-success-actions button{
+      min-height:44px;border-radius:999px;padding:0 14px;display:flex;align-items:center;justify-content:center;
+      font:700 11px/1 Inter,system-ui,sans-serif;text-decoration:none;cursor:pointer;
+    }
+    .booking-success-actions .primary{background:#53131c;color:#fff8ef;border:1px solid #53131c}
+    .booking-success-actions .secondary{background:transparent;color:#53131c;border:1px solid #c6a15b}
+    @media(max-width:520px){
+      .booking-success-backdrop{align-items:flex-end;padding:8px}
+      .booking-success-card{width:100%;max-height:82vh;border-radius:20px 20px 14px 14px;padding:20px 16px calc(18px + env(safe-area-inset-bottom))}
+      .booking-success-card h2{font-size:34px}
+      .booking-success-grid{grid-template-columns:1fr 1fr}
+      .booking-success-actions{grid-template-columns:1fr}
+    }
+  `;
+  document.head.appendChild(style);
+
+  const modal=document.createElement("div");
+  modal.id="bookingSuccessModal";
+  modal.className="booking-success-backdrop";
+  modal.setAttribute("role","dialog");
+  modal.setAttribute("aria-modal","true");
+  modal.setAttribute("aria-labelledby","bookingSuccessTitle");
+  modal.innerHTML=`
+    <section class="booking-success-card">
+      <p class="booking-success-kicker">Private Bookings · Kweider</p>
+      <h2 id="bookingSuccessTitle">Request Received</h2>
+      <p class="booking-success-lead">Thank you. Your private booking request has been received and is now with our team for review.</p>
+      <div class="booking-success-ref">
+        <small>Booking reference</small>
+        <strong id="bookingSuccessReference">—</strong>
+      </div>
+      <div class="booking-success-grid">
+        <div><span>Guests</span><strong id="bookingSuccessGuests">—</strong></div>
+        <div><span>Estimated total</span><strong id="bookingSuccessTotal">—</strong></div>
+        <div><span>Preferred date</span><strong id="bookingSuccessDate">—</strong></div>
+        <div><span>Preferred time</span><strong id="bookingSuccessTime">—</strong></div>
+      </div>
+      <p class="booking-success-note">Your booking is not confirmed yet. Our team will review availability and contact you to confirm the arrangements.</p>
+      <div class="booking-success-actions">
+        <button type="button" class="primary" id="bookingSuccessSummary">View Request Summary</button>
+        <a class="secondary" href="https://kweidersweets.co.uk">Return to Kweider</a>
+      </div>
+    </section>
+  `;
+  document.body.appendChild(modal);
+
+  modal.addEventListener("click",e=>{
+    if(e.target===modal)modal.classList.remove("is-open");
+  });
+  document.getElementById("bookingSuccessSummary").addEventListener("click",()=>{
+    modal.classList.remove("is-open");
+    if(window.matchMedia("(max-width: 1023px)").matches)openDrawer();
+    else document.getElementById("summaryCard")?.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+}
+
+function showSuccessModal(result){
+  ensureSuccessModal();
+  const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value||"—";};
+  set("bookingSuccessReference",result?.requestId);
+  set("bookingSuccessGuests",`${state.guests} guests`);
+  set("bookingSuccessTotal",result?.totalFormatted||document.getElementById("sumTotal")?.textContent||"—");
+  set("bookingSuccessDate",state.preferredDate||"—");
+  set("bookingSuccessTime",document.getElementById("eventTime")?.value||"—");
+  const modal=document.getElementById("bookingSuccessModal");
+  modal.classList.add("is-open");
+  modal.querySelector(".booking-success-card")?.scrollTo(0,0);
+}
 function openDrawer(){
   document.getElementById("mobileDrawer").classList.add("open");
   document.getElementById("drawerBackdrop").classList.add("open");
@@ -1088,6 +1195,7 @@ function init(){
         document.getElementById("mobileTotal").textContent=result.totalFormatted;
       }
       toast(`Request ${result.requestId} received. Our team will contact you to confirm.`);
+      showSuccessModal(result);
     }catch(error){
       btn.textContent=originalText;
       state.submittedRequestId="";

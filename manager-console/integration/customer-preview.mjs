@@ -1214,7 +1214,6 @@ function init(){
 // STAGING integration: no customer details are transmitted and no real booking is written.
 let snapshot=null;
 const activeCategory=()=>snapshot?.catalog.categories.find(c=>c.active&&c.id===state.packageId);
-function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
 function safeImage(v){try{const u=new URL(v,location.href);if(u.protocol==="https:"&&!u.username&&!u.password)return escapeHtml(u.href)}catch{}return ""}
 function installCatalog(s){
  if(!s||typeof s.version!=="string"||!Array.isArray(s.catalog?.categories)||!s.catalog.categories.some(c=>c.active))throw Error("Invalid staged catalog");

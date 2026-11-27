@@ -1,0 +1,987 @@
+{
+  "content": {
+    "title": "Your Occasion,\nYour Kweider.",
+    "titleAr": "",
+    "intro": "Reserve Kweider’s first floor and shape the hospitality around your guests — from private hire to breakfast, lunch, dinner and wedding service.",
+    "introAr": "احجز الطابق الأول بالكامل، واختر الضيافة التي تناسب مناسبتك وضيوفك.",
+    "heroImage": "https://bookings.kweidersweets.co.uk/images/venue-hero.webp",
+    "video": "https://bookings.kweidersweets.co.uk/media/venue-preview.mp4",
+    "tableUrl": "https://kweidersweets.co.uk/pages/book-a-table",
+    "terms": "",
+    "termsAr": "",
+    "contactUrl": ""
+  },
+  "categories": [
+    {
+      "id": "venue-only",
+      "name": "Venue Only",
+      "ar": "المكان فقط",
+      "description": "Private use of the full first floor.",
+      "image": "https://bookings.kweidersweets.co.uk/images/venue-only.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "fixed",
+      "durations": [
+        {
+          "hours": 2,
+          "price": 400
+        },
+        {
+          "hours": 4,
+          "price": 700
+        },
+        {
+          "hours": 6,
+          "price": 1000
+        }
+      ],
+      "tiers": [],
+      "coffeeChoices": []
+    },
+    {
+      "id": "breakfast",
+      "name": "Damascene Breakfast",
+      "ar": "المكان + الفطور",
+      "description": "Classic · Super · Luxury packages.",
+      "image": "https://bookings.kweidersweets.co.uk/images/breakfast.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "per-guest",
+      "durations": [
+        {
+          "hours": 2,
+          "price": 0
+        },
+        {
+          "hours": 3,
+          "price": 150
+        },
+        {
+          "hours": 4,
+          "price": 250
+        }
+      ],
+      "tiers": [
+        {
+          "id": "classic",
+          "name": "Classic",
+          "ar": "كلاسيك",
+          "price": 4.99,
+          "included": "Bread\nPickles\nWater\nClassic Black Tea",
+          "includedAr": "",
+          "description": "Individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "olive-oil-foul",
+              "name": "Olive Oil Foul",
+              "ar": "فول بالزيت",
+              "price": 7,
+              "active": true,
+              "menuRef": {
+                "name": "Olive Oil Foul",
+                "file": "olive-oil-foul.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "yogurt-foul",
+              "name": "Yogurt Foul",
+              "ar": "فول باللبن",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Yogurt Foul",
+                "file": "yogurt-foul.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "olive-oil-tesqiyeh",
+              "name": "Olive Oil Tesqiyeh",
+              "ar": "فتة بالزيت",
+              "price": 7,
+              "active": true,
+              "menuRef": {
+                "name": "Olive Oil Tesqiyeh",
+                "file": "olive-oil-tesqiyeh.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "ghee-nuts-fatteh",
+              "name": "Ghee & Nuts Fatteh",
+              "ar": "فتة بالسمنة والمكسرات",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Ghee & Nuts Fatteh",
+                "file": "nuts-fatteh.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "super",
+          "name": "Super",
+          "ar": "سوبر",
+          "price": 7.99,
+          "included": "Tahini Musabaha\nOlive Oil Labneh\nOlives\nJam\nButter\nPickles\nWater\nBread\nClassic Black Tea",
+          "includedAr": "",
+          "description": "Individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "olive-oil-foul",
+              "name": "Olive Oil Foul",
+              "ar": "فول بالزيت",
+              "price": 7,
+              "active": true,
+              "menuRef": {
+                "name": "Olive Oil Foul",
+                "file": "olive-oil-foul.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "yogurt-foul",
+              "name": "Yogurt Foul",
+              "ar": "فول باللبن",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Yogurt Foul",
+                "file": "yogurt-foul.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "olive-oil-tesqiyeh",
+              "name": "Olive Oil Tesqiyeh",
+              "ar": "فتة بالزيت",
+              "price": 7,
+              "active": true,
+              "menuRef": {
+                "name": "Olive Oil Tesqiyeh",
+                "file": "olive-oil-tesqiyeh.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "ghee-nuts-fatteh",
+              "name": "Ghee & Nuts Fatteh",
+              "ar": "فتة بالسمنة والمكسرات",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Ghee & Nuts Fatteh",
+                "file": "nuts-fatteh.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            }
+          ]
+        },
+        {
+          "id": "luxury",
+          "name": "Luxury",
+          "ar": "فاخر",
+          "price": 13.99,
+          "included": "Tahini Musabaha\nOlive Oil Labneh\nAuthentic White Cheese\nOlives\nWalnut Makdous\nZaatar\nJam\nTahini Halawa\nButter\nPickles\nWater\nBread\nClassic Black Tea",
+          "includedAr": "",
+          "description": "Sharing style for every 2 guests",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "olive-oil-foul",
+              "name": "Olive Oil Foul",
+              "ar": "فول بالزيت",
+              "price": 7,
+              "active": true,
+              "menuRef": {
+                "name": "Olive Oil Foul",
+                "file": "olive-oil-foul.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "yogurt-foul",
+              "name": "Yogurt Foul",
+              "ar": "فول باللبن",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Yogurt Foul",
+                "file": "yogurt-foul.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "olive-oil-tesqiyeh",
+              "name": "Olive Oil Tesqiyeh",
+              "ar": "فتة بالزيت",
+              "price": 7,
+              "active": true,
+              "menuRef": {
+                "name": "Olive Oil Tesqiyeh",
+                "file": "olive-oil-tesqiyeh.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "ghee-nuts-fatteh",
+              "name": "Ghee & Nuts Fatteh",
+              "ar": "فتة بالسمنة والمكسرات",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Ghee & Nuts Fatteh",
+                "file": "nuts-fatteh.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            }
+          ]
+        }
+      ],
+      "coffeeChoices": []
+    },
+    {
+      "id": "lunch",
+      "name": "Private Lunch",
+      "ar": "المكان + الغداء",
+      "description": "Classic · Super · Luxury packages.",
+      "image": "https://bookings.kweidersweets.co.uk/images/lunch.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "per-guest",
+      "durations": [
+        {
+          "hours": 2,
+          "price": 0
+        },
+        {
+          "hours": 3,
+          "price": 150
+        },
+        {
+          "hours": 4,
+          "price": 250
+        }
+      ],
+      "tiers": [
+        {
+          "id": "classic",
+          "name": "Classic",
+          "ar": "كلاسيك",
+          "price": 9.99,
+          "included": "Moutabal\n1 Meat Kibbeh\nPlain Yogurt\nBread\nWater",
+          "includedAr": "",
+          "description": "Individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "ouzi",
+              "name": "1 Ouzi with Meat and Nuts",
+              "ar": "صرة أوزي باللحمة والمكسرات",
+              "price": 6,
+              "active": true,
+              "menuRef": {
+                "name": "1 Ouzi with Meat and Nuts",
+                "file": "ouzi-with-meat-nuts-11.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chicken-freekeh",
+              "name": "Chicken Freekeh",
+              "ar": "فريكة بالدجاج",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "meat-maqluba",
+              "name": "Meat Maqluba",
+              "ar": "مقلوبة باللحم",
+              "price": 7,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "super",
+          "name": "Super",
+          "ar": "سوبر",
+          "price": 17.99,
+          "included": "Moutabal\nHummus\nCheese Burek\n1 Meat Kibbeh\nPlain Yogurt\nBread\nClassic Black Tea\nWater",
+          "includedAr": "",
+          "description": "Individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "ouzi",
+              "name": "1 Ouzi with Meat and Nuts",
+              "ar": "صرة أوزي باللحمة والمكسرات",
+              "price": 6,
+              "active": true,
+              "menuRef": {
+                "name": "1 Ouzi with Meat and Nuts",
+                "file": "ouzi-with-meat-nuts-11.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chicken-freekeh",
+              "name": "Chicken Freekeh",
+              "ar": "فريكة بالدجاج",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "meat-maqluba",
+              "name": "Meat Maqluba",
+              "ar": "مقلوبة باللحم",
+              "price": 7,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "luxury",
+          "name": "Luxury",
+          "ar": "فاخر",
+          "price": 25.99,
+          "included": "Moutabal\nHummus\n1 Cheese Burek + 1 Meat Burek\n1 Meat Kibbeh\nFattoush\nCucumber Yogurt\nBread\nClassic Black Tea\nWater\nBitter Arabic Coffee",
+          "includedAr": "",
+          "description": "Premium individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "ouzi",
+              "name": "1 Ouzi with Meat and Nuts",
+              "ar": "صرة أوزي باللحمة والمكسرات",
+              "price": 6,
+              "active": true,
+              "menuRef": {
+                "name": "1 Ouzi with Meat and Nuts",
+                "file": "ouzi-with-meat-nuts-11.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chicken-freekeh",
+              "name": "Chicken Freekeh",
+              "ar": "فريكة بالدجاج",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "meat-maqluba",
+              "name": "Meat Maqluba",
+              "ar": "مقلوبة باللحم",
+              "price": 7,
+              "active": true
+            }
+          ]
+        }
+      ],
+      "coffeeChoices": []
+    },
+    {
+      "id": "dinner",
+      "name": "Private Dinner",
+      "ar": "المكان + العشاء",
+      "description": "Classic · Super · Luxury packages.",
+      "image": "https://bookings.kweidersweets.co.uk/images/dinner.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "per-guest",
+      "durations": [
+        {
+          "hours": 2,
+          "price": 0
+        },
+        {
+          "hours": 3,
+          "price": 150
+        },
+        {
+          "hours": 4,
+          "price": 250
+        }
+      ],
+      "tiers": [
+        {
+          "id": "classic",
+          "name": "Classic",
+          "ar": "كلاسيك",
+          "price": 9.99,
+          "included": "Moutabal\n1 Meat Kibbeh\nPlain Yogurt\nBread\nWater",
+          "includedAr": "",
+          "description": "Individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "ouzi",
+              "name": "1 Ouzi with Meat and Nuts",
+              "ar": "صرة أوزي باللحمة والمكسرات",
+              "price": 6,
+              "active": true,
+              "menuRef": {
+                "name": "1 Ouzi with Meat and Nuts",
+                "file": "ouzi-with-meat-nuts-11.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chicken-freekeh",
+              "name": "Chicken Freekeh",
+              "ar": "فريكة بالدجاج",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "meat-maqluba",
+              "name": "Meat Maqluba",
+              "ar": "مقلوبة باللحم",
+              "price": 7,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "super",
+          "name": "Super",
+          "ar": "سوبر",
+          "price": 17.99,
+          "included": "Moutabal\nHummus\nCheese Burek\n1 Meat Kibbeh\nPlain Yogurt\nBread\nClassic Black Tea\nWater",
+          "includedAr": "",
+          "description": "Individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "ouzi",
+              "name": "1 Ouzi with Meat and Nuts",
+              "ar": "صرة أوزي باللحمة والمكسرات",
+              "price": 6,
+              "active": true,
+              "menuRef": {
+                "name": "1 Ouzi with Meat and Nuts",
+                "file": "ouzi-with-meat-nuts-11.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chicken-freekeh",
+              "name": "Chicken Freekeh",
+              "ar": "فريكة بالدجاج",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "meat-maqluba",
+              "name": "Meat Maqluba",
+              "ar": "مقلوبة باللحم",
+              "price": 7,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "luxury",
+          "name": "Luxury",
+          "ar": "فاخر",
+          "price": 25.99,
+          "included": "Moutabal\nHummus\n1 Cheese Burek + 1 Meat Burek\n1 Meat Kibbeh\nFattoush\nCucumber Yogurt\nBread\nClassic Black Tea\nWater\nBitter Arabic Coffee",
+          "includedAr": "",
+          "description": "Premium individual setting",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "ouzi",
+              "name": "1 Ouzi with Meat and Nuts",
+              "ar": "صرة أوزي باللحمة والمكسرات",
+              "price": 6,
+              "active": true,
+              "menuRef": {
+                "name": "1 Ouzi with Meat and Nuts",
+                "file": "ouzi-with-meat-nuts-11.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chicken-freekeh",
+              "name": "Chicken Freekeh",
+              "ar": "فريكة بالدجاج",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "meat-maqluba",
+              "name": "Meat Maqluba",
+              "ar": "مقلوبة باللحم",
+              "price": 7,
+              "active": true
+            }
+          ]
+        }
+      ],
+      "coffeeChoices": []
+    },
+    {
+      "id": "sweets-coffee",
+      "name": "Damascene Sweets & Coffee",
+      "ar": "حلويات دمشقية وقهوة",
+      "description": "Classic · Super · Luxury hospitality.",
+      "image": "https://bookings.kweidersweets.co.uk/images/sweets-drinks.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "per-guest",
+      "durations": [
+        {
+          "hours": 2,
+          "price": 0
+        },
+        {
+          "hours": 3,
+          "price": 150
+        },
+        {
+          "hours": 4,
+          "price": 250
+        }
+      ],
+      "tiers": [
+        {
+          "id": "classic",
+          "name": "Classic",
+          "ar": "كلاسيك",
+          "price": 4.99,
+          "included": "Arabic Coffee or Espresso\nWater",
+          "includedAr": "",
+          "description": "Refined Damascene hospitality",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "cheese-kunafa",
+              "name": "Cheese Kunafa",
+              "ar": "كنافة بالجبن",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "halawet-el-jibn",
+              "name": "Cream Halawet El Jibn",
+              "ar": "حلاوة بالجبن",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "madlouka",
+              "name": "Cream Madlouka",
+              "ar": "مدلوقة",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Cream Madlouka",
+                "file": "madlouka.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chocolate-kunafa",
+              "name": "Chocolate Kunafa",
+              "ar": "كنافة بالشوكولا",
+              "price": 5,
+              "active": true
+            },
+            {
+              "id": "cream-baklava",
+              "name": "Cream Baklava",
+              "ar": "بقلاوة بالقشطة",
+              "price": 4,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "super",
+          "name": "Super",
+          "ar": "سوبر",
+          "price": 9.99,
+          "included": "Arabic Coffee or Espresso\nJuice\nWater",
+          "includedAr": "",
+          "description": "Fuller hospitality",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "cheese-kunafa",
+              "name": "Cheese Kunafa",
+              "ar": "كنافة بالجبن",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "halawet-el-jibn",
+              "name": "Cream Halawet El Jibn",
+              "ar": "حلاوة بالجبن",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "madlouka",
+              "name": "Cream Madlouka",
+              "ar": "مدلوقة",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Cream Madlouka",
+                "file": "madlouka.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chocolate-kunafa",
+              "name": "Chocolate Kunafa",
+              "ar": "كنافة بالشوكولا",
+              "price": 5,
+              "active": true
+            },
+            {
+              "id": "cream-baklava",
+              "name": "Cream Baklava",
+              "ar": "بقلاوة بالقشطة",
+              "price": 4,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "luxury",
+          "name": "Luxury",
+          "ar": "فاخر",
+          "price": 12.99,
+          "included": "Mixed Salted Nuts on the table\nArabic Coffee or Espresso\nJuice\nWater",
+          "includedAr": "",
+          "description": "Premium hospitality",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "cheese-kunafa",
+              "name": "Cheese Kunafa",
+              "ar": "كنافة بالجبن",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "halawet-el-jibn",
+              "name": "Cream Halawet El Jibn",
+              "ar": "حلاوة بالجبن",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "madlouka",
+              "name": "Cream Madlouka",
+              "ar": "مدلوقة",
+              "price": 8,
+              "active": true,
+              "menuRef": {
+                "name": "Cream Madlouka",
+                "file": "madlouka.webp",
+                "unit": "menu serving",
+                "sku": ""
+              }
+            },
+            {
+              "id": "chocolate-kunafa",
+              "name": "Chocolate Kunafa",
+              "ar": "كنافة بالشوكولا",
+              "price": 5,
+              "active": true
+            },
+            {
+              "id": "cream-baklava",
+              "name": "Cream Baklava",
+              "ar": "بقلاوة بالقشطة",
+              "price": 4,
+              "active": true
+            }
+          ]
+        }
+      ],
+      "coffeeChoices": [
+        "Cardamom Arabic Coffee",
+        "Roasted Espresso"
+      ]
+    },
+    {
+      "id": "wedding",
+      "name": "Wedding Hospitality",
+      "ar": "ضيافة حفلات الزفاف",
+      "description": "Classic · Super · Luxury · Wedding Dinner.",
+      "image": "https://bookings.kweidersweets.co.uk/images/wedding.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "per-guest",
+      "durations": [
+        {
+          "hours": 2,
+          "price": 0
+        },
+        {
+          "hours": 3,
+          "price": 150
+        },
+        {
+          "hours": 4,
+          "price": 250
+        }
+      ],
+      "tiers": [
+        {
+          "id": "classic",
+          "name": "Classic",
+          "ar": "كلاسيك",
+          "price": 12,
+          "included": "1 Petit Four piece\nOrange / Pineapple / Mango juice\nWater",
+          "includedAr": "",
+          "description": "Classic wedding hospitality",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "muhallaya",
+              "name": "Muhallaya",
+              "ar": "مهلبية",
+              "price": 3.5,
+              "active": true
+            },
+            {
+              "id": "arabic-icecream",
+              "name": "Arabic Ice Cream — 2 slices",
+              "ar": "بوظة عربية — شريحتان",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "cassata",
+              "name": "Cassata — 2 slices",
+              "ar": "كاسيتا — شريحتان",
+              "price": 6,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "super",
+          "name": "Super",
+          "ar": "سوبر",
+          "price": 16,
+          "included": "1 Petit Four piece\nOrange / Pineapple / Mango juice\n1 Chocolate piece\nBitter Arabic Coffee",
+          "includedAr": "",
+          "description": "Enhanced wedding hospitality",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "muhallaya",
+              "name": "Muhallaya",
+              "ar": "مهلبية",
+              "price": 3.5,
+              "active": true
+            },
+            {
+              "id": "arabic-icecream",
+              "name": "Arabic Ice Cream — 2 slices",
+              "ar": "بوظة عربية — شريحتان",
+              "price": 7,
+              "active": true
+            },
+            {
+              "id": "cassata",
+              "name": "Cassata — 2 slices",
+              "ar": "كاسيتا — شريحتان",
+              "price": 6,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "luxury",
+          "name": "Luxury",
+          "ar": "فاخر",
+          "price": 19.99,
+          "included": "2 Petit Four pieces\nOrange / Pineapple / Mango juice\n1 Chocolate piece\nMixed Salted Nuts on the table\nSugared Almonds\nBitter Arabic Coffee",
+          "includedAr": "",
+          "description": "Luxury wedding hospitality",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": true,
+          "choices": [
+            {
+              "id": "muhallaya-nuts",
+              "name": "Muhallaya with Nuts",
+              "ar": "مهلبية بالمكسرات",
+              "price": 5,
+              "active": true
+            },
+            {
+              "id": "arabic-icecream-rose",
+              "name": "Arabic Ice Cream with Rose & Nuts — 2 slices",
+              "ar": "بوظة عربية مع ورد ومكسرات — شريحتان",
+              "price": 9,
+              "active": true
+            },
+            {
+              "id": "cassata-rose",
+              "name": "Cassata with Rose & Nuts — 2 slices",
+              "ar": "كاسيتا مع ورد ومكسرات — شريحتان",
+              "price": 7,
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "dinner",
+          "name": "Wedding Dinner",
+          "ar": "عشاء الزفاف",
+          "price": 29.99,
+          "included": "Traditional Rice with Bone-In Meat\nPlain Yogurt\nTomato Sauce\nWater\nCola\nBitter Arabic Coffee Service",
+          "includedAr": "",
+          "description": "Complete wedding dinner",
+          "descriptionAr": "",
+          "image": "",
+          "active": true,
+          "coverage": false,
+          "choices": [
+            {
+              "id": "cream-baklava-2",
+              "name": "Cream Baklava — 2 pieces",
+              "ar": "بقلاوة بالقشطة — قطعتان",
+              "price": 2,
+              "active": true
+            },
+            {
+              "id": "cream-mabrouma-2",
+              "name": "Cream Mabrouma — 2 pieces",
+              "ar": "مبرومة بالقشطة — قطعتان",
+              "price": 3,
+              "active": true
+            },
+            {
+              "id": "sugared-almond-pouch",
+              "name": "Sugared Almond Pouch",
+              "ar": "صرة ملبس",
+              "price": 1.5,
+              "active": true
+            }
+          ]
+        }
+      ],
+      "coffeeChoices": []
+    },
+    {
+      "id": "special-events",
+      "name": "Special Events",
+      "ar": "فعاليات خاصة",
+      "description": "Tailored event request with our management team.",
+      "image": "https://bookings.kweidersweets.co.uk/images/venue-hero.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "quote",
+      "durations": [],
+      "tiers": [],
+      "coffeeChoices": []
+    },
+    {
+      "id": "corporate-cultural",
+      "name": "Corporate & Cultural Events",
+      "ar": "مؤسسات وفعاليات ثقافية",
+      "description": "Meetings, workshops, talks and cultural gatherings.",
+      "image": "https://bookings.kweidersweets.co.uk/images/special-events.webp",
+      "descriptionAr": "",
+      "active": true,
+      "min": 40,
+      "max": 85,
+      "kind": "quote",
+      "durations": [],
+      "tiers": [],
+      "coffeeChoices": []
+    }
+  ]
+}

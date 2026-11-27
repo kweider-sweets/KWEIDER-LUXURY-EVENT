@@ -558,7 +558,7 @@ function updateGuestEligibility(){
 }
 
 function bookingReady(){
-  if(!snapshot)return false;
+  if(!snapshot||!snapshot.menuVerified)return false;
   if(!privateEligible())return false;
   if(isTailored())return true;
   if(!state.duration)return false;
@@ -1246,11 +1246,12 @@ async function startStaging(){
  const notice=document.getElementById("stagingNotice"),button=document.getElementById("submitRequest");
  button.disabled=true;
  try{
-   const r=await fetch("/api/public-catalog",{cache:"no-store"});if(!r.ok)throw Error("Catalog unavailable");
-   installCatalog(await r.json());init();
-   notice.textContent="STAGING — Original page layout · catalog "+snapshot.version.slice(0,12)+" · no real bookings or payments";
+   const r=await fetch("/api/public-catalog",{cache:"no-store",signal:AbortSignal.timeout(20000)});const data=await r.json();if(!r.ok)throw Error(data.error||"CATALOG_UNAVAILABLE");
+   installCatalog(data);init();
+   notice.textContent=snapshot.menuVerified?"STAGING — Menu verified · "+snapshot.linked+" linked selections · "+snapshot.reviewCount+" need review · no real bookings or payments":"STAGING — Menu unavailable ("+(snapshot.menuIssue||"UNKNOWN")+") · unverified items hidden · quotes disabled";
    button.onclick=async()=>{if(!bookingReady())return;button.disabled=true;try{const res=await fetch("/api/staging-quote",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({version:snapshot.version,experience:state.packageId,tier:state.tierId,duration:state.duration,guests:state.guests,selections:submissionSelections()})});const out=await res.json();if(!res.ok)throw Error(out.error||"Quote failed");notice.textContent="STAGING VERIFIED QUOTE — "+(out.totalPence===null?"Tailored quote":money(out.totalPence/100))+" · no booking created";notice.scrollIntoView({behavior:"smooth"});}catch(e){notice.textContent="STAGING — "+e.message+". Reload to refresh catalog.";}finally{syncSubmitState()}};
-   const sync=syncSubmitState;syncSubmitState=function(){sync();if(bookingReady())button.textContent="Verify test quote — no booking";};syncSubmitState();
- }catch(e){notice.textContent="STAGING unavailable — "+e.message;button.disabled=true;document.getElementById("builder").setAttribute("inert","");}
+   const sync=syncSubmitState;syncSubmitState=function(){sync();if(!snapshot.menuVerified){button.disabled=true;button.textContent="Menu verification unavailable — quotes disabled";}else if(bookingReady())button.textContent="Verify test quote — no booking";};syncSubmitState();
+   document.querySelectorAll(".reveal").forEach(el=>el.classList.add("is-visible"));
+ }catch(e){notice.textContent="STAGING unavailable — "+e.message;button.disabled=true;document.getElementById("builder").setAttribute("inert","");document.getElementById("builder").hidden=true;document.querySelectorAll(".reveal").forEach(el=>el.classList.add("is-visible"));}
 }
 startStaging();

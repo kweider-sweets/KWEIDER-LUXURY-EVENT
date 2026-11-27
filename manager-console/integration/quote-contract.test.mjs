@@ -1,0 +1,34 @@
+import {quote} from './quote-contract.mjs';
+function runChecks(quote) {
+  const clone=x=>JSON.parse(JSON.stringify(x));
+  const fixed={id:"venue-only",name:"Venue Only",active:true,min:40,max:85,kind:"fixed",durations:[{hours:2,price:400}]};
+  const breakfast={id:"breakfast",name:"Breakfast",active:true,min:40,max:85,kind:"per-guest",durations:[{hours:2,price:0},{hours:3,price:150}],tiers:[{id:"classic",name:"Classic",active:true,price:4.99,coverage:true,included:"Bread\nWater",choices:[{id:"foul",name:"Foul",active:true,price:7.75,menuLinked:true,unit:"menu serving"},{id:"hidden",name:"Hidden",active:false,price:2}]}]};
+  const snap={version:"v1",menuVerified:true,catalog:{categories:[fixed,breakfast,{id:"special",name:"Special",active:true,min:40,max:85,kind:"quote"}]}};
+  const req={version:"v1",experience:"breakfast",guests:40,tier:"classic",duration:2,selections:[{id:"foul",qty:40}]};
+  const results=[];const test=(name,fn)=>{if(!fn())throw Error("FAIL "+name);results.push(name)};
+  const rejects=(s,r,code)=>{try{quote(s,r);return false}catch(e){return e.code===code}};
+  test("Venue £400",()=>quote(snap,{version:"v1",experience:"venue-only",guests:40,duration:2}).totalPence===40000);
+  test("Breakfast exact pence",()=>quote(snap,req).totalPence===50960);
+  test("Extra time",()=>quote(snap,{...req,duration:3}).totalPence===65960);
+  test("Tailored quote",()=>quote(snap,{version:"v1",experience:"special",guests:40}).totalPence===null);
+  test("Reject stale revision",()=>rejects(snap,{...req,version:"v0"},"PRICE_CHANGED"));
+  test("Reject insufficient guests",()=>rejects(snap,{...req,guests:39},"GUEST_COUNT"));
+  test("Reject excess guests",()=>rejects(snap,{...req,guests:86},"GUEST_COUNT"));
+  test("Reject unlisted duration",()=>rejects(snap,{...req,duration:4},"INVALID_DURATION"));
+  test("Reject hidden product",()=>rejects(snap,{...req,selections:[{id:"hidden",qty:40}]},"ITEM_UNAVAILABLE"));
+  test("Reject duplicate item",()=>rejects(snap,{...req,selections:[{id:"foul",qty:20},{id:"foul",qty:20}]},"INVALID_SELECTION"));
+  test("Reject inadequate coverage",()=>rejects(snap,{...req,selections:[{id:"foul",qty:39}]},"GUEST_COVERAGE"));
+  test("Reject stale menu",()=>rejects({...snap,menuVerified:false},req,"MENU_UNAVAILABLE"));
+  const changed=clone(snap);changed.version="v2";changed.catalog.categories[1].tiers[0].choices[0].price=9;
+  test("New source price recalculates",()=>quote(changed,{...req,version:"v2"}).totalPence===55960);
+  test("Old price snapshot stays unchanged",()=>quote(snap,req).totalPence===50960);
+  const portion=clone(snap);portion.catalog.categories[1].tiers[0].choices[0].unit="4 pc";
+  test("Reject unclear multipack coverage",()=>rejects(portion,req,"PORTION_REVIEW_REQUIRED"));
+  portion.catalog.categories[1].tiers[0].choices[0].coveragePerUnit=4;
+  test("Explicit coverage uses servings",()=>quote(portion,{...req,selections:[{id:"foul",qty:10}]}).totalPence===27710);
+  const offer=clone(snap);offer.catalog.categories[1].tiers[0].choices[0].menuOffer=true;
+  test("Reject temporary offer without approval",()=>rejects(offer,req,"OFFER_NOT_APPROVED"));
+  test("Reject fixed-price extra injection",()=>rejects(snap,{version:"v1",experience:"venue-only",guests:40,duration:2,selections:[{id:"foul",qty:1}]},"INVALID_FIXED_SELECTION"));
+  return results;
+}
+const passed=runChecks(quote); for(const name of passed) console.log('PASS '+name);console.log(passed.length+' checks passed');

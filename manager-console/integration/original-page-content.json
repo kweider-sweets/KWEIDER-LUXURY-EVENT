@@ -1,0 +1,88 @@
+{
+  "source": {
+    "repo": "kweider-sweets/KWEIDER-LUXURY-EVENT",
+    "ref": "main",
+    "indexBlob": "0bb021e353a262c64d079a2fbfcc90e1ef4ebfb8",
+    "publicUrl": "https://bookings.kweidersweets.co.uk/"
+  },
+  "content": {
+    "title": "Your Occasion,\nYour Kweider.",
+    "titleAr": "",
+    "intro": "Reserve Kweider’s first floor and shape the hospitality around your guests — from private hire to breakfast, lunch, dinner and wedding service.",
+    "introAr": "احجز الطابق الأول بالكامل، واختر الضيافة التي تناسب مناسبتك وضيوفك.",
+    "heroImage": "https://bookings.kweidersweets.co.uk/images/venue-hero.webp",
+    "video": "https://bookings.kweidersweets.co.uk/media/venue-preview.mp4",
+    "tableUrl": "https://kweidersweets.co.uk/pages/book-a-table"
+  },
+  "categories": [
+    {
+      "id": "venue-only",
+      "name": "Venue Only",
+      "ar": "المكان فقط",
+      "description": "Private use of the full first floor.",
+      "image": "https://bookings.kweidersweets.co.uk/images/venue-only.webp"
+    },
+    {
+      "id": "breakfast",
+      "name": "Damascene Breakfast",
+      "ar": "المكان + الفطور",
+      "description": "Classic · Super · Luxury packages.",
+      "image": "https://bookings.kweidersweets.co.uk/images/breakfast.webp"
+    },
+    {
+      "id": "lunch",
+      "name": "Private Lunch",
+      "ar": "المكان + الغداء",
+      "description": "Classic · Super · Luxury packages.",
+      "image": "https://bookings.kweidersweets.co.uk/images/lunch.webp"
+    },
+    {
+      "id": "dinner",
+      "name": "Private Dinner",
+      "ar": "المكان + العشاء",
+      "description": "Classic · Super · Luxury packages.",
+      "image": "https://bookings.kweidersweets.co.uk/images/dinner.webp"
+    },
+    {
+      "id": "sweets-coffee",
+      "name": "Damascene Sweets & Coffee",
+      "ar": "حلويات دمشقية وقهوة",
+      "description": "Classic · Super · Luxury hospitality.",
+      "image": "https://bookings.kweidersweets.co.uk/images/sweets-drinks.webp"
+    },
+    {
+      "id": "wedding",
+      "name": "Wedding Hospitality",
+      "ar": "ضيافة حفلات الزفاف",
+      "description": "Classic · Super · Luxury · Wedding Dinner.",
+      "image": "https://bookings.kweidersweets.co.uk/images/wedding.webp"
+    },
+    {
+      "id": "special-events",
+      "name": "Special Events",
+      "ar": "فعاليات خاصة",
+      "description": "Tailored event request with our management team.",
+      "image": "https://bookings.kweidersweets.co.uk/images/venue-hero.webp"
+    },
+    {
+      "id": "corporate-cultural",
+      "name": "Corporate & Cultural Events",
+      "ar": "مؤسسات وفعاليات ثقافية",
+      "description": "Meetings, workshops, talks and cultural gatherings.",
+      "image": "https://bookings.kweidersweets.co.uk/images/special-events.webp"
+    }
+  ],
+  "originalFilm": {
+    "title": "Our beginnings,\nin Damascus.",
+    "paragraphs": [
+      "Our story began in Damascus, one of the world’s oldest continuously inhabited cities, where sweet-making has long been woven into the city’s culture and hospitality.",
+      "In Al-Midan, Deeb bin Muhammad Kweider (1860–1951) laid the foundations of the family craft. Passed through generations, the Kweider name was formally established in 1969 — carrying authentic Damascene tradition forward.",
+      "لمحة عن أجواء المكان قبل أن تبدأ بتنسيق مناسبتك."
+    ],
+    "poster": "https://bookings.kweidersweets.co.uk/images/venue-hero.webp"
+  },
+  "notes": [
+    "Arabic category descriptions and Arabic hero headline do not exist as independent original fields; intentionally not invented.",
+    "Other page sections remain in the original index.html and need mapping in the editor."
+  ]
+}

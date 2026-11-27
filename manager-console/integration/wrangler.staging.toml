@@ -1,0 +1,9 @@
+# Separate preview Worker; never deploy over production kweider-events-api.
+name = "kweider-private-events-staging"
+main = "staging-worker.mjs"
+compatibility_date = "2026-11-27"
+workers_dev = true
+[assets]
+directory = "../.."
+binding = "ASSETS"
+run_worker_first = true
